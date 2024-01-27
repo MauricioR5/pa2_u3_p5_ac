@@ -82,10 +82,10 @@ public class Factura {
 	@Override
 	public String toString() {
 		return "Factura [id=" + id + ", numero=" + numero + ", fecha=" + fecha + ", cedula=" + cedula
-			+ ", getId()=" + getId() + ", getNumero()=" + getNumero()
-				+ ", getFecha()=" + getFecha() + ", getCedula()=" + getCedula() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+				+ ", detalleFactura=" + detalleFactura + "]";
 	}
+
+	
 	
 	
 	

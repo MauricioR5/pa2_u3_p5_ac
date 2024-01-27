@@ -1,7 +1,5 @@
 package com.uce.edu;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,38 +24,43 @@ public class Pa2U3P5AcApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		
-		Factura fac = new Factura();
-		fac.setCedula("123456789");
-		fac.setFecha(LocalDateTime.now());
-		fac.setNumero("0001-0255");
-		
-		DetalleFactura det1 = new DetalleFactura();
-		det1.setCantidad(5);
-		det1.setCodigoBarras("0000001");
-		det1.setNombreProducto("Coca Cola");
-		det1.setFactura(fac);
-	
-		DetalleFactura det2 = new DetalleFactura();
-		det2.setCantidad(8);
-		det2.setCodigoBarras("0000002");
-		det2.setNombreProducto("Sprite");
-		det2.setFactura(fac);
-		
-		List<DetalleFactura> detalle = new ArrayList<>();
-		detalle.add(det1);
-		detalle.add(det2);
-	
-		
-		fac.setDetalleFactura(detalle);
-		
-		//this.iFacturaService.agregar(fac);
-		Factura fac01 = this.iFacturaService.buscarPorNumero("0001-0255");
-		for(DetalleFactura det: fac01.getDetalleFactura()) {
-			System.out.println(det.getCodigoBarras());
-		}
+		System.out.println("INNER JOIN");
+		List<Factura> lista = this.iFacturaService.buscarFacturasInnerJoin();
+		for(Factura f: lista) {
 			
-		System.out.println(fac01);
+		System.out.println(f);
+		
+		
+		}
+		System.out.println("RIGHT JOIN");
+		List<Factura> lista2 = this.iFacturaService.buscarFacturasRightJoin();
+		for(Factura f: lista2) {
+			
+		System.out.println(f.getNumero());
+		
+		
+		}
+		
+		System.out.println("LEFT JOIN");
+		List<Factura> lista3 = this.iFacturaService.buscarFacturasRightJoin();
+		for(Factura f: lista3) {
+			
+		System.out.println(f);
+		
+		
+		}
+		
+		System.out.println("FULL JOIN");
+		List<Factura> lista4 = this.iFacturaService.buscarFacturasRightJoin();
+		for(Factura f: lista4) {
+			
+		System.out.println(f);
+		for(DetalleFactura d : f.getDetalleFactura()) {
+			System.out.println(d);
+		}
+		
+		
+		}
 	}
 
 }
