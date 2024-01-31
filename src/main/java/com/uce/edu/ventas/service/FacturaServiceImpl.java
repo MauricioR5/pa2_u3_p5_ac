@@ -1,5 +1,6 @@
 package com.uce.edu.ventas.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.uce.edu.ventas.repository.IFacturaRepository;
 import com.uce.edu.ventas.repository.modelo.Factura;
+import com.uce.edu.ventas.repository.modelo.dto.FacturaDTO;
 
 @Service
 public class FacturaServiceImpl implements IFacturaService {
@@ -58,6 +60,29 @@ public class FacturaServiceImpl implements IFacturaService {
 	public List<Factura> buscarFacturasFetchJoin() {
 		// TODO Auto-generated method stub
 		return this.iFacturaRepository.seleccionarFacturaFetchJoin();
+	}
+
+	@Override
+	public int eliminarPorNumero(String numero) {
+		// TODO Auto-generated method stub
+		return this.iFacturaRepository.eliminarPorNumero(numero);
+	}
+
+	@Override
+	public int actualizarFecha(LocalDateTime fechaNueva, LocalDateTime fechaActual) {
+		// TODO Auto-generated method stub
+		return this.iFacturaRepository.actualizarFecha(fechaNueva, fechaActual);
+	}
+
+	@Override
+	public void eliminar(Integer id) {
+		this.iFacturaRepository.eliminar(id);
+	}
+
+	@Override
+	public List<FacturaDTO> buscarFacturasDTO() {
+		// TODO Auto-generated method stub
+		return this.iFacturaRepository.seleccionarFacturasDTO();
 	}
 
 }

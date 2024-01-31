@@ -1,18 +1,17 @@
 package com.uce.edu.ventas.repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.uce.edu.ventas.repository.modelo.DetalleFactura;
 import com.uce.edu.ventas.repository.modelo.Factura;
+import com.uce.edu.ventas.repository.modelo.dto.FacturaDTO;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -115,12 +114,40 @@ public class FacturaRepositoryImpl implements IFacturaRepository {
 
 	@Override
 	public List<Factura> seleccionarFacturaFetchJoin() {
-		
-		//SELECT f FROM Factura f JOIN FETCH f.detalleFactura d
+
+		// SELECT f FROM Factura f JOIN FETCH f.detalleFactura d
 		TypedQuery<Factura> myQuery = this.entityManager
 				.createQuery("SELECT f FROM Factura f JOIN FETCH f.detalleFactura d", Factura.class);
 		List<Factura> lista = myQuery.getResultList();
 		return lista;
+	}
+
+	@Override
+	public int eliminarPorNumero(String numero) {
+		Query myQuery = 
+				this.entityManager.createQuery("DELETE FROM Factura f WHERE f.numero=:numero");
+		myQuery.setParameter("numero", numero);
+		return myQuery.executeUpdate();
+	}
+
+	@Override
+	public int actualizarFecha(LocalDateTime fechaNueva, LocalDateTime fechaActual) {
+		Query myQuery = this.entityManager
+				 .createQuery("UPDATE Factura f SET f.fecha = :fechaNueva WHERE f.fecha >= :fechaActual");
+	    myQuery.setParameter("fechaNueva", fechaNueva);
+	    myQuery.setParameter("fechaActual", fechaActual);
+		return myQuery.executeUpdate();
+	}
+
+	@Override
+	public void eliminar(Integer id) {
+		this.entityManager.remove(id);
+	}
+
+	@Override
+	public List<FacturaDTO> seleccionarFacturasDTO() {//hay que incluir el nombre desde el paquete
+		TypedQuery<FacturaDTO> myQuery = this.entityManager.createQuery("SELECT NEW com.uce.edu.ventas.repository.modelo.dto.FacturaDTO(f.numero,f.fecha) FROM Factura f", FacturaDTO.class);
+		return myQuery.getResultList();
 	}
 
 }
