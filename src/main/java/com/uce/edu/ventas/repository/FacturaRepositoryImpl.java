@@ -46,9 +46,9 @@ public class FacturaRepositoryImpl implements IFacturaRepository {
 				.createQuery("SELECT f FROM Factura f INNER JOIN f.detalleFactura d", Factura.class);
 
 		List<Factura> lista = myQuery.getResultList();
-//		for (Factura f : lista) {
-//			f.getDetalleFactura().size();
-//		}
+		for (Factura f : lista) {
+			f.getDetalleFactura().size();
+		}
 		return lista;
 	}
 

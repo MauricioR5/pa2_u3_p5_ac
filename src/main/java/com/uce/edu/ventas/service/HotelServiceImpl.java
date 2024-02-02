@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uce.edu.ventas.repository.IHotelRepository;
-import com.uce.edu.ventas.repository.modelo.Habitacion;
 import com.uce.edu.ventas.repository.modelo.Hotel;
 
 @Service
@@ -38,6 +37,11 @@ public class HotelServiceImpl implements IHotelService {
 	public List<Hotel> buscarHotelFullJoin(String numero) {
 		// TODO Auto-generated method stub
 		return this.iHotelRepository.seleccionarHotelFullJoin(numero);
+	}
+	@Override
+	public List<Hotel> buscarHotelFetchJoin() {
+		// TODO Auto-generated method stub
+		return this.iHotelRepository.seleccionarHotelFetchJoin();
 	}
 
 

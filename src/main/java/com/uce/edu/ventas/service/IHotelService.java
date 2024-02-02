@@ -15,4 +15,6 @@ public List<Hotel> buscarHotelInnerJoin(String numero);
 	public List<Hotel> buscarHotelLeftJoin(String numero);
 	
 	public List<Hotel> buscarHotelFullJoin(String numero);
+	
+	public List<Hotel> buscarHotelFetchJoin();
 }

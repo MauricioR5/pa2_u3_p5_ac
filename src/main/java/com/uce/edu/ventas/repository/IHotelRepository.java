@@ -15,4 +15,6 @@ public List<Hotel> seleccionarHotelInnerJoin(String numero);
 	public List<Hotel> seleccionarHotelLeftJoin(String numero);
 	
 	public List<Hotel> seleccionarHotelFullJoin(String numero);
+	
+	public List<Hotel> seleccionarHotelFetchJoin();
 }
