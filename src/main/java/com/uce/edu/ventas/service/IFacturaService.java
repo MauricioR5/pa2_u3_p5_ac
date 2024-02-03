@@ -3,6 +3,7 @@ package com.uce.edu.ventas.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.uce.edu.ventas.repository.modelo.Cliente;
 import com.uce.edu.ventas.repository.modelo.Factura;
 import com.uce.edu.ventas.repository.modelo.dto.FacturaDTO;
 
@@ -10,7 +11,7 @@ public interface IFacturaService {
 
 	public Factura buscarPorNumero(String numero);
 
-	public void agregar(Factura factura);
+	public void agregar(Factura factura, Cliente cliente);
 	
 	public void eliminar(Integer id);
 	
