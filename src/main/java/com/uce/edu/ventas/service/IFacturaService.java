@@ -33,4 +33,6 @@ public interface IFacturaService {
 	public int actualizarFecha(LocalDateTime fechaNueva, LocalDateTime fechaActual);
 	
 	public List<FacturaDTO> buscarFacturasDTO(); 
+	
+	public void prueba();
 }

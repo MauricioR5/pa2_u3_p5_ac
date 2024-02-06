@@ -43,7 +43,10 @@ public class Pa2U3P5AcApplication implements CommandLineRunner{
 		cli.setApellido(null);
 		cli.setNombre("Mauricio");
 		
-		this.iFacturaService.agregar(fact,cli);
+		//this.iFacturaService.agregar(fact,cli);
+		
+		System.out.println("Main:"+TransactionSynchronizationManager.isActualTransactionActive());
+		this.iFacturaService.prueba();
 
 		
 		
