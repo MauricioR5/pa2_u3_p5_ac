@@ -3,6 +3,7 @@ package com.uce.edu.ventas.service;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
@@ -20,18 +21,17 @@ public class ClienteServiceImpl implements IClienteService {
 
 	@Override
 	@Transactional(value = TxType.REQUIRED)
+	@Async
 	public void guardar(Cliente cliente) {
-		
+		System.out.println("Nombre hilo: " + Thread.currentThread().getName());
 		this.iClienteRepository.insertar(cliente);
-			try {
-				TimeUnit.SECONDS.sleep(1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	
-		
-		
+		try {
+			TimeUnit.SECONDS.sleep(1);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class ClienteServiceImpl implements IClienteService {
 	public void pruebaNever() {
 		System.out.println("Este es un método never");
 		System.out.println("Prueba Never:" + TransactionSynchronizationManager.isActualTransactionActive());
-		
+
 	}
 
 }
